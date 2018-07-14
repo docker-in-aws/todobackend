@@ -18,3 +18,7 @@ phases:
     commands:
       - make clean
       - make logout
+
+artifacts:
+  files:
+    - version.json
