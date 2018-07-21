@@ -1,9 +1,13 @@
-.PHONY: test release clean version login logout publish
+.PHONY: test release clean version login logout publish deploy
 
 export APP_VERSION ?= $(shell git rev-parse --short HEAD)
 
 version:
 	@ echo '{"Version": "$(APP_VERSION)"}'
+
+deploy:
+	@ echo "Deploying version ${APP_VERSION}..."
+	docker stack deploy --with-registry-auth -c stack.yml todobackend
 
 login:
 	$$(aws ecr get-login --no-include-email)
